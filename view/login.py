@@ -16,10 +16,9 @@ class LogInView(QtWidgets.QWidget):
         self.setLayout(self.form_layout)
         
         self.label_title = QtWidgets.QLabel("Media Visualizer")
-        self.label_title.setFont(QtGui.QFont("Good Timing", 30))
-        self.line_edit_username = QtWidgets.QLineEdit(self)
-        self.line_edit_username.setPlaceholderText(" Username")
-        self.line_edit_password = QtWidgets.QLineEdit(self)
+        self.line_edit_username = QtWidgets.QLineEdit()
+        self.line_edit_username.setPlaceholderText("Username")
+        self.line_edit_password = QtWidgets.QLineEdit()
         self.line_edit_password.setPlaceholderText("Password")
         self.layout_buttons = QtWidgets.QHBoxLayout()
         self.button_register = QtWidgets.QPushButton("Sign Up")
@@ -39,7 +38,8 @@ class LogInView(QtWidgets.QWidget):
             background-color: rgb(21, 3, 39);
             color: rgb(240, 240, 240);
         """
-        title_style = """"""
+        title_style = """
+        """
         button_style = """
             border: 1px solid white;
             border-radius: 10px;
@@ -62,11 +62,17 @@ class LogInView(QtWidgets.QWidget):
         self.line_edit_password.setStyleSheet(line_edit_style)
         self.button_login.setStyleSheet(button_style)
         self.button_register.setStyleSheet(button_style)
-        
-        self.label_title.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.line_edit_username.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.line_edit_password.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.layout_buttons.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+        self.label_title.setFont(QtGui.QFont("Good Timing", 35))
+        self.label_title.setFixedWidth(400)
+        self.line_edit_username.setFixedWidth(300)
+        self.line_edit_password.setFixedWidth(300)
+        self.button_register.setFixedWidth(300)
+    
+        self.form_layout.setFormAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label_title.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.label_title.setMargin(50)
+        self.layout_buttons.setContentsMargins(0, 50, 0, 50)
 
 
     def setup_connection(self):

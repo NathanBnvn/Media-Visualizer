@@ -8,7 +8,7 @@ class HomeView(QtWidgets.QWidget):
         self.home_controller = home_controller
         self.setup_ui()
         self.setup_css()
-        # self.setup_connection()
+        self.setup_connection()
         self.show()
     
     def setup_ui(self):
@@ -50,7 +50,7 @@ class HomeView(QtWidgets.QWidget):
 
 
     def _setup_body_ui(self):
-        self.layout_body = QtWidgets.QHBoxLayout()
+        self.layout_body = QtWidgets.QGridLayout()
         return self.layout_body
 
     def setup_css(self):
@@ -97,7 +97,7 @@ class HomeView(QtWidgets.QWidget):
         self.button_show_hierarchy.setStyleSheet(round_button_style)
         self.button_edit_profile.setStyleSheet(edit_button_style)
         self.search_bar.setStyleSheet(search_bar_style)
-
+        
 
     def setup_connection(self):
         pass
