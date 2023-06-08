@@ -1,4 +1,4 @@
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtCore
 from controller.main import MainController
 
 class App(QtWidgets.QMainWindow):

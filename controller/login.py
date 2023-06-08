@@ -9,8 +9,13 @@ class LogInController:
         self.main = main
 
     def login(self):
+        # if username & password in database then
+        # self.main._enter_the_app()
+        # else show an error window 
+        # that invite people to sign up
         self.main._enter_the_app()
     
     def register(self):
-        #self.main._enter_the_app()
-        pass
+        # if fields empty show message explaining
+        # that the subscription start here 
+        self.main._to_register_page()
