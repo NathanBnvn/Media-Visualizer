@@ -1,7 +1,7 @@
 from pathlib import Path
 
-class StyleTheme:
-    def __init__(self):
+class Styling:
+    def __init__(self, primary_color, secondary_color, terciary_color):
         super().__init__()
 
         self.path = Path(__file__).resolve().parent / 'media'
@@ -11,6 +11,8 @@ class StyleTheme:
         print(self.path)
     
     def set_theme(self):
+        self._customize_icon()
+        pass
 
-
+    def _customize_icon(self):
         pass
