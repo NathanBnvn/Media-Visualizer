@@ -1,7 +1,9 @@
 from PySide6 import QtWidgets, QtGui, QtCore
 from pathlib import Path
 
-# from .style import StyleTheme
+
+# from .styling import Styling
+from .custom_widget import CategoryWidget
 
 class HomeView(QtWidgets.QWidget):
     def __init__(self, home_controller):
@@ -44,11 +46,11 @@ class HomeView(QtWidgets.QWidget):
         self.separator = QtWidgets.QFrame()
         self.separator.setFrameShape(QtWidgets.QFrame.HLine) # type: ignore
 
-        self.button_add_folder.setIcon(QtGui.QIcon("media/plus_icon.svg"))
+        self.button_add_folder.setIcon(QtGui.QIcon("media/add_icon.svg"))
         self.button_show_filter.setIcon(QtGui.QIcon("media/filter_icon.svg"))
         self.button_show_hierarchy.setIcon(QtGui.QIcon("media/hierarchy_icon.svg"))
 
-        self.layout_action.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.layout_action.setAlignment(QtCore.Qt.AlignmentFlag.AlignJustify)
         self.layout_header.addWidget(self.label_username)
         self.layout_action.addWidget(self.button_add_folder)
         self.layout_action.addWidget(self.button_show_filter)
@@ -87,9 +89,9 @@ class HomeView(QtWidgets.QWidget):
 
     def _setup_body_ui(self):
         self.layout_body = QtWidgets.QGridLayout()
-        self.image_folder_main_icon = QtWidgets.QLabel()
-        self.image_folder_second_icon = QtWidgets.QLabel()
-        self.image_folder_third_icon = QtWidgets.QLabel()
+        self.category_widget = CategoryWidget()
+        self.layout_body.addWidget(self.category_widget)
+
         return self.layout_body
 
 
@@ -109,8 +111,6 @@ class HomeView(QtWidgets.QWidget):
             color: white;
         """
         round_button_style = """
-            border: 1px solid red;
-            border-radius: 13px;
             width: 25px;
             height: 25px;
         """
@@ -147,7 +147,7 @@ class HomeView(QtWidgets.QWidget):
     def _setup_menu_css(self):
         line_style = """
             border: none;
-            border-right: 10px solid red;
+            border-right: 15px solid red;
         """
         self.line.setStyleSheet(line_style)
 
