@@ -44,8 +44,8 @@ class LogInView(QtWidgets.QWidget):
             border: 1px solid white;
             border-radius: 10px;
             height: 30px;
-            max-width: 200px;
-            min-width: 200px;
+            max-width: 120px;
+            min-width: 120px;
         """
         line_edit_style = """
             height: 35px;
@@ -68,7 +68,7 @@ class LogInView(QtWidgets.QWidget):
         self.label_title.setFixedWidth(400)
         self.line_edit_username.setFixedWidth(420)
         self.line_edit_password.setFixedWidth(420)
-        self.button_register.setFixedWidth(300)
+        # self.button_register.setFixedWidth(420)
     
         self.form_layout.setFormAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_title.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter)

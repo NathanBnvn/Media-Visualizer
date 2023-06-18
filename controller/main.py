@@ -23,6 +23,7 @@ class MainController:
 
     def _enter_the_app(self):
         self.stacked_layout.setCurrentIndex(self.stacked_layout.currentIndex()+2)
-    
+
+
     def _to_register_page(self):
         self.stacked_layout.setCurrentIndex(self.stacked_layout.currentIndex()+1)
