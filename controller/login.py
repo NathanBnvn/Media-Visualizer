@@ -13,9 +13,13 @@ class LogInController:
         # self.main._enter_the_app()
         # else show an error window 
         # that invite people to sign up
-        self.main._enter_the_app()
+        # self.main._enter_the_app()
+        pass
     
     def register(self):
         # if fields empty show message explaining
         # that the subscription start here 
         self.main._to_register_page()
+    
+    def access_to_home(self):
+        self.main._enter_the_app()

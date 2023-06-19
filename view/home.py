@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 from controller.styling import Styling
-from .custom_widget import CategoryWidget
+from .custom_widget import MediaFolder, MediaSubfolder, AllMediaFolder
 
 class HomeView(QtWidgets.QWidget):
     def __init__(self, home_controller):
@@ -73,18 +73,25 @@ class HomeView(QtWidgets.QWidget):
 
     def _setup_menu_ui(self):
         self.layout_menu = QtWidgets.QHBoxLayout()
-        #self.layout_menu_content = QtWidgets.QVBoxLayout()
+        self.layout_menu_content = QtWidgets.QVBoxLayout()
 
         self.button_close = QtWidgets.QPushButton()
         self.frame_line = QtWidgets.QFrame()
+        self.frame_line.setFrameShape(QtWidgets.QFrame.VLine) # type: ignore
 
         # self.path = Path(__file__).resolve().parent
         #self.model = QtWidgets.QFileSystemModel()
         #self.model.setRootPath(QtCore.QDir(f"{self.path}").currentPath())
         #self.tree =  QtWidgets.QTreeView()
         #self.tree.setModel(self.model)
-        
-        self.frame_line.setFrameShape(QtWidgets.QFrame.VLine) # type: ignore
+
+        self.button_close.setIcon(QtGui.QIcon("media/back_icon.svg"))
+        self.button_close.setIconSize(QtCore.QSize(30, 30))
+        self.layout_menu_content.setContentsMargins(10, 10, 10, 10)
+        self.layout_menu_content.addWidget(self.button_close, 0, 
+                                           QtCore.Qt.AlignmentFlag.AlignTop 
+                                           | QtCore.Qt.AlignmentFlag.AlignLeft)
+        # self.layout_menu.addLayout(self.layout_menu_content)
         self.layout_menu.addWidget(self.frame_line)
         
         return self.layout_menu
@@ -92,8 +99,12 @@ class HomeView(QtWidgets.QWidget):
 
     def _setup_body_ui(self):
         self.layout_body = QtWidgets.QHBoxLayout()
-        self.category_widget = CategoryWidget(QtWidgets)
-        self.layout_body.addWidget(self.category_widget)
+        self.all_media_folder_widget = AllMediaFolder()
+        self.folder_widget = MediaFolder()
+        self.subfolder_widget = MediaSubfolder()
+        self.layout_body.addWidget(self.folder_widget)
+        #self.layout_body.addWidget(self.subfolder_widget)
+        self.layout_body.addWidget(self.all_media_folder_widget)
 
         # self.layout_category = QtWidgets.QHBoxLayout()
         # self.layout_second = QtWidgets.QVBoxLayout()
@@ -126,7 +137,7 @@ class HomeView(QtWidgets.QWidget):
             border: none;
             color: white;
         """
-        round_button_style = """
+        self.round_button_style = """
             width: 25px;
             height: 25px;
         """
@@ -154,9 +165,9 @@ class HomeView(QtWidgets.QWidget):
         self.label_username.setStyleSheet(label_username_style)
         self.label_username.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
-        self.button_add_folder.setStyleSheet(round_button_style)
-        self.button_show_filter.setStyleSheet(round_button_style)
-        self.button_show_hierarchy.setStyleSheet(round_button_style)
+        self.button_add_folder.setStyleSheet(self.round_button_style)
+        self.button_show_filter.setStyleSheet(self.round_button_style)
+        self.button_show_hierarchy.setStyleSheet(self.round_button_style)
         self.button_edit_profile.setStyleSheet(edit_button_style)
         self.search_bar.setStyleSheet(search_bar_style)
     
@@ -171,7 +182,7 @@ class HomeView(QtWidgets.QWidget):
         """
         
         self.frame_line.setStyleSheet(line_style)
-        #self.button_close.setStyleSheet(line_style_1)
+        self.button_close.setStyleSheet(self.round_button_style)
 
 
         # self.label_primary_image.setStyleSheet(line_style_1)
