@@ -78,8 +78,8 @@ class LogInView(QtWidgets.QWidget):
     
         self.form_layout.setFormAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_title.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter)
-        self.label_title.setMargin(50)
-        self.layout_buttons.setContentsMargins(0, 50, 0, 15)
+        self.label_title.setMargin(25)
+        self.layout_buttons.setContentsMargins(0, 25, 0, 15)
 
 
     def setup_connection(self):

@@ -13,5 +13,10 @@ class RegisterController(QtWidgets.QWidget):
         # or I create field with data alrealdy fill in
         # from the login page
         # or I can do both...
-        '🤔'
-        pass
+        print('🤔')
+
+    def select_profile_picture(self):
+        QtWidgets.QFileDialog.getOpenFileName(self, "Select picture", "c:\\desktop", "All Images")
+
+    def sign_up(self):
+        print("3")
