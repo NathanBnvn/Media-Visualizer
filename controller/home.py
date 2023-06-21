@@ -5,4 +5,6 @@ class HomeController:
         super().__init__()
 
         self.view = HomeView(self)
-        pass
+    
+    def close_menu(self):
+        self.view._setup_menu_ui.move(200, 300)

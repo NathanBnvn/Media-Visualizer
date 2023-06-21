@@ -19,7 +19,7 @@ class LogInController:
     def register(self):
         # if fields empty show message explaining
         # that the subscription start here 
-        self.main._to_register_page()
+        self.main._to_page(1, True)
     
     def access_to_home(self):
-        self.main._enter_the_app()
+        self.main._to_page(2, True)

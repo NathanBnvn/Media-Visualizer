@@ -21,6 +21,8 @@ class RegisterView(QtWidgets.QWidget):
         self.button_back_to_login.setIconSize(QtCore.QSize(15, 15))
         
         self.button_add_picture = QtWidgets.QPushButton()
+        self.button_add_picture.setIcon(QtGui.QIcon("media/add_v2_icon.svg"))
+        self.button_add_picture.setIconSize(QtCore.QSize(15, 15))
         self.line_edit_mail = QtWidgets.QLineEdit()
         self.line_edit_mail.setPlaceholderText("Mail address")
         self.line_edit_confirm_password = QtWidgets.QLineEdit()
@@ -28,14 +30,13 @@ class RegisterView(QtWidgets.QWidget):
         self.line_edit_confirm_password.setPlaceholderText("Confirm password")
         self.button_signup = QtWidgets.QPushButton("Sign up")
 
-        self.form_layout.addWidget(self.button_add_picture)
-        self.form_layout.addWidget(self.line_edit_mail)
-        self.form_layout.addWidget(self.line_edit_confirm_password)
-        self.form_layout.addWidget(self.button_signup)
+        self.form_layout.addRow(self.button_add_picture)
+        self.form_layout.addRow(self.line_edit_mail)
+        self.form_layout.addRow(self.line_edit_confirm_password)
+        self.form_layout.addRow(self.button_signup)
 
         self.layout_main.addWidget(self.button_back_to_login)
         self.layout_main.addLayout(self.form_layout)
-        self.layout_main.setSpacing(0)
 
         self.setLayout(self.layout_main)
         return self.layout_main
@@ -46,7 +47,10 @@ class RegisterView(QtWidgets.QWidget):
             background-color: rgb(21, 3, 39);
             color: rgb(240, 240, 240);
         """
-        button_style = """
+        button_picture_profile_style = """
+            background-color: red;
+        """
+        button_signup_style = """
             border: 1px solid white;
             border-radius: 10px;
             height: 30px;
@@ -64,14 +68,17 @@ class RegisterView(QtWidgets.QWidget):
         self.setMinimumSize(QtCore.QSize(700, 500))
 
         self.button_back_to_login.setFixedSize(25, 25)
+        self.button_add_picture.setFixedSize(40, 40)
+        self.button_add_picture.setStyleSheet(button_picture_profile_style)
         self.line_edit_mail.setStyleSheet(line_edit_style)
         self.line_edit_confirm_password.setStyleSheet(line_edit_style)
-        self.button_signup.setStyleSheet(button_style)
+        self.button_signup.setStyleSheet(button_signup_style)
 
         self.line_edit_mail.setFixedWidth(420)
         self.line_edit_confirm_password.setFixedWidth(420)
     
         self.form_layout.setFormAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
 
     def setup_connection(self):
         self.button_back_to_login.clicked.connect(self.register_controller.back_to_login)

@@ -9,14 +9,10 @@ class RegisterController(QtWidgets.QWidget):
         self.main = main
     
     def back_to_login(self):
-        # if there is a mistake user can go back
-        # or I create field with data alrealdy fill in
-        # from the login page
-        # or I can do both...
-        print('🤔')
+        self.main._to_page(1, False)
 
     def select_profile_picture(self):
-        QtWidgets.QFileDialog.getOpenFileName(self, "Select picture", "c:\\desktop", "All Images")
+        QtWidgets.QFileDialog.getOpenFileName(self, "Select picture", "c:\\desktop", "All FIles(*) ;; Images(*.jpeg)")
 
     def sign_up(self):
         print("3")

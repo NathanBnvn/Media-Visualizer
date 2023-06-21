@@ -21,9 +21,12 @@ class MainController:
         self.main_layout.addLayout(self.stacked_layout)
 
 
-    def _enter_the_app(self):
-        self.stacked_layout.setCurrentIndex(self.stacked_layout.currentIndex()+2)
-
-
-    def _to_register_page(self):
-        self.stacked_layout.setCurrentIndex(self.stacked_layout.currentIndex()+1)
+    def _to_page(self, page_stack:int, next: bool):
+        if next:
+            self.stacked_layout.setCurrentIndex(
+                self.stacked_layout.currentIndex()+ page_stack
+                )
+        else:
+            self.stacked_layout.setCurrentIndex(
+                self.stacked_layout.currentIndex()- page_stack
+            )

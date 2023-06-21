@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 from controller.styling import Styling
-from .custom_widget import MediaFolder, MediaSubfolder, AllMediaFolder
+from .custom_widgets import MediaFolder, MediaSubfolder, AllMediaFolder
 
 class HomeView(QtWidgets.QWidget):
     def __init__(self, home_controller):
@@ -79,11 +79,11 @@ class HomeView(QtWidgets.QWidget):
         self.frame_line = QtWidgets.QFrame()
         self.frame_line.setFrameShape(QtWidgets.QFrame.VLine) # type: ignore
 
-        # self.path = Path(__file__).resolve().parent
-        #self.model = QtWidgets.QFileSystemModel()
-        #self.model.setRootPath(QtCore.QDir(f"{self.path}").currentPath())
-        #self.tree =  QtWidgets.QTreeView()
-        #self.tree.setModel(self.model)
+        self.path = Path(__file__).resolve().parent
+        self.model = QtWidgets.QFileSystemModel()
+        self.model.setRootPath(QtCore.QDir(f"{self.path}").currentPath())
+        self.tree =  QtWidgets.QTreeView()
+        self.tree.setModel(self.model)
 
         self.button_close.setIcon(QtGui.QIcon("media/back_icon.svg"))
         self.button_close.setIconSize(QtCore.QSize(30, 30))
@@ -91,7 +91,8 @@ class HomeView(QtWidgets.QWidget):
         self.layout_menu_content.addWidget(self.button_close, 0, 
                                            QtCore.Qt.AlignmentFlag.AlignTop 
                                            | QtCore.Qt.AlignmentFlag.AlignLeft)
-        # self.layout_menu.addLayout(self.layout_menu_content)
+        self.layout_menu_content.addWidget(self.tree)
+        #self.layout_menu.addLayout(self.layout_menu_content)
         self.layout_menu.addWidget(self.frame_line)
         
         return self.layout_menu
@@ -103,7 +104,7 @@ class HomeView(QtWidgets.QWidget):
         self.folder_widget = MediaFolder()
         self.subfolder_widget = MediaSubfolder()
         self.layout_body.addWidget(self.folder_widget)
-        #self.layout_body.addWidget(self.subfolder_widget)
+        self.layout_body.addWidget(self.subfolder_widget)
         self.layout_body.addWidget(self.all_media_folder_widget)
 
         # self.layout_category = QtWidgets.QHBoxLayout()
@@ -201,4 +202,5 @@ class HomeView(QtWidgets.QWidget):
         
 
     def setup_connection(self):
+        #self.button_close.clicked.connect(self.home_controller.close_menu)
         pass
