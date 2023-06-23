@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 from controller.styling import Styling
-from .custom_widgets import MediaFolder, MediaSubfolder, AllMediaFolder
+from .custom_widgets import Folder, Board, Section, AllMediaFolder
 
 class HomeView(QtWidgets.QWidget):
     def __init__(self, home_controller):
@@ -34,9 +34,10 @@ class HomeView(QtWidgets.QWidget):
 
 
     def _setup_header_ui(self):
-        self.layout_header = QtWidgets.QVBoxLayout()
-        self.layout_action = QtWidgets.QHBoxLayout()
+        self.layout_header = QtWidgets.QGridLayout()
+        #self.layout_action = QtWidgets.QHBoxLayout()
 
+        self.photo_username = QtWidgets.QLabel("User photo")
         self.label_username = QtWidgets.QLabel("User pseudo")
         self.label_username.setContentsMargins(0, 20, 0, 5)
         self.button_add_folder = QtWidgets.QPushButton()
@@ -55,18 +56,27 @@ class HomeView(QtWidgets.QWidget):
         self.button_show_hierarchy.setIcon(QtGui.QIcon("media/hierarchy_icon.svg"))
         self.button_show_hierarchy.setIconSize(QtCore.QSize(30, 30))
 
-        self.layout_action.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.layout_header.addWidget(self.label_username)
-        self.layout_action.addWidget(self.button_add_folder)
-        self.layout_action.addWidget(self.button_show_filter)
-        self.layout_action.addWidget(self.button_show_hierarchy)
-        self.layout_action.addStretch()
-        self.layout_action.addWidget(self.button_edit_profile)
-        self.layout_action.addStretch()
-        self.layout_action.addWidget(self.search_bar)
-        self.layout_action.setContentsMargins(15, 0, 15, 0)
-        self.layout_header.addLayout(self.layout_action)
-        self.layout_header.addWidget(self.separator)
+        self.layout_header.addWidget(self.photo_username, 1, 0, 1, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.layout_header.addWidget(self.label_username, 2, 0, 2, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
+        #self.layout_header.addWidget(self.button_add_folder, 3, 0)
+        #self.layout_header.addWidget(self.button_show_filter, 3, 1)
+        #self.layout_header.addWidget(self.button_show_hierarchy, 3, 3)
+        #self.layout_header.addWidget(self.button_edit_profile, 3, 0, 3, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
+        #self.layout_header.addWidget(self.search_bar, 3, -1)
+        self.layout_header.addWidget(self.separator, 6, 0, 6, 0)
+
+
+        # self.layout_action.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        # self.layout_header.addWidget(self.label_username)
+        # self.layout_action.addWidget(self.button_add_folder)
+        # self.layout_action.addWidget(self.button_show_filter)
+        # self.layout_action.addWidget(self.button_show_hierarchy)
+        # self.layout_action.addStreth()
+        # self.layout_action.addWidget(self.button_edit_profile)
+        # self.layout_action.addStretch()
+        # self.layout_action.addWidget(self.search_bar)
+        # self.layout_action.setContentsMargins(15, 0, 15, 0)
+        # self.layout_header.addLayout(self.layout_action)
 
         return self.layout_header
 
@@ -101,17 +111,19 @@ class HomeView(QtWidgets.QWidget):
     def _setup_body_ui(self):
         self.layout_body = QtWidgets.QHBoxLayout()
         self.all_media_folder_widget = AllMediaFolder()
-        self.folder_widget = MediaFolder()
-        self.subfolder_widget = MediaSubfolder()
+        self.folder_widget = Board("title")
+        self.subfolder_widget = Folder("title")
+        self.section_folder_widget = Section("title")
         self.layout_body.addWidget(self.folder_widget)
         self.layout_body.addWidget(self.subfolder_widget)
         self.layout_body.addWidget(self.all_media_folder_widget)
+        self.layout_body.addWidget(self.section_folder_widget)
 
-        # self.layout_category = QtWidgets.QHBoxLayout()
-        # self.layout_second = QtWidgets.QVBoxLayout()
-        # self.label_primary_image = QtWidgets.QLabel()
-        # self.label_second_image = QtWidgets.QLabel()
-        # self.label_third_image = QtWidgets.QLabel()
+        self.layout_category = QtWidgets.QHBoxLayout()
+        self.layout_second = QtWidgets.QVBoxLayout()
+        self.label_primary_image = QtWidgets.QLabel()
+        self.label_second_image = QtWidgets.QLabel()
+        self.label_third_image = QtWidgets.QLabel()
 
         # self.layout_category.addWidget(self.label_primary_image)
         # self.layout_second.addWidget(self.label_second_image)
@@ -135,7 +147,7 @@ class HomeView(QtWidgets.QWidget):
             border-bottom: 1px solid red;
         """
         label_username_style = """
-            border: none;
+            border: 1px solid red;
             color: white;
         """
         self.round_button_style = """
@@ -162,7 +174,7 @@ class HomeView(QtWidgets.QWidget):
         self.layout_header.setAlignment(QtCore.Qt.AlignmentFlag.AlignTop)
 
         self.separator.setStyleSheet(frame_style)
-
+        self.photo_username.setStyleSheet(label_username_style)
         self.label_username.setStyleSheet(label_username_style)
         self.label_username.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
